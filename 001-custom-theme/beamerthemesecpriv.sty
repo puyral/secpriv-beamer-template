@@ -1,0 +1,46 @@
+\NeedsTeXFormat{LaTeX2e}
+\mode<presentation>
+
+% Requirement
+\RequirePackage{tikz,fontspec,xcolor,calc}
+\usetikzlibrary{positioning, shadows, fit, calc, shapes}
+
+% Settings
+\newlength{\mmu}  % this is the main "unit" used thoughout this theme
+                  % it is set to 3% of the smallest dimension by default
+                  % changing this affects every spacings
+\ifdim\paperwidth<\paperheight
+  \setlength{\mmu}{\dimexpr 0.03\paperwidth\relax}
+\else
+  \setlength{\mmu}{\dimexpr 0.03\paperheight\relax}
+\fi
+
+% the heigh of the logos in the footer
+\newdimen\spfooter@logoheight
+\setlength{\spfooter@logoheight}{\heightof{\footnotesize T} * \real{1.5}}
+
+
+%%%% Calling the other components
+% I'm not very sure what splitting them really means, but since
+% there is no documentation, I'm following what the others did
+\usecolortheme{secpriv} % <- sets the colors
+\usefonttheme{secpriv}  % <- set the font
+\useoutertheme{secpriv} % <- templates for the "writable" part of the slide ?
+                        %    it notably set the title page
+\useinnertheme{secpriv} % <- header and footers
+
+%% redifine `usetheme'
+% in case it was changed, this is required to get to "legacy" themes
+\def\beamer@calltheme#1#2#3{%
+  \def\beamer@themelist{#2}
+  \@for\beamer@themename:=\beamer@themelist\do
+  {\usepackage[{#1}]{#3\beamer@themename}}}
+\usefonttheme[onlymath]{serif} % <- math should be serif
+
+\setbeamertemplate{navigation symbols}{}  % showing that we're different by removing the
+                                          % navigation buttons !
+
+% the margins
+\setbeamersize{text margin left=2\mmu, text margin right = 2\mmu} 
+
+\mode<all>

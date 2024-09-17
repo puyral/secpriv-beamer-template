@@ -1,0 +1,187 @@
+\RequirePackage{xparse}
+\mode<presentation>
+
+% \usetikzlibrary{fit, calc}
+
+% Title page
+
+\usetikzlibrary{math} 
+% this defines the title page
+% techically, this is only the background of said title page.
+% NB: we are in a tikxpicture already, see `\setbeamertemplate{background}' for the invocation.
+\newcommand{\innerTitlePage}{
+    \path % logos
+      node[
+        right,
+        anchor=north west,
+        text width=\the\paperwidth - 4\mmu
+      ] (logos) at (2\mmu, \the\paperheight - 2\mmu)
+        {%
+          \includegraphics[height=6\mmu]{011-Logos/logo_RGB.pdf}%
+          \hspace{\mmu}
+          \includegraphics[height=6\mmu]{011-Logos/cysec_blue_gray.pdf}
+          \hspace{\mmu}
+          \includegraphics[height=4\mmu]{011-Logos/SPyCoDe.pdf}
+          \hspace{\mmu}
+          \includegraphics[height=4\mmu]{011-Logos/FWF_Logo_Zusatz_Dunkelblau_RGB_EN.pdf}
+        }
+      % ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ you can keep on chaining
+
+      % node[anchor=north east] (qr1)  at (\the\paperwidth - 2\mmu, \the\paperheight - 2\mmu)
+      %   {\includegraphics[height=5\mmu]{./012-Assets/qr-file-2.pdf}}
+      % node[anchor=east] (qr2) [left=of qr1]
+      %   {\includegraphics[height=5\mmu]{./012-Assets/qr-video-1.pdf}}
+      % ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ how to add some on the right
+
+      ; % <- don't delete me, I'm the end of the path
+
+      %% Title
+      % First, place a temporary node to calculate its height.
+      \node[right, align=left, text width=\the\paperwidth / 4 * 3 - 2\mmu, fill=tumagenta, anchor=north west, inner sep=\mmu] %
+        (tmp_title) at (0, 0) %
+        {\phantom{\usebeamerfont{title}\color{white} \inserttitle}}; % phantom node to measure the size
+
+      % Now, calculate the height of the temporary node and adjust final position
+      \path
+      let \p1 = ($(tmp_title.north) - (tmp_title.south)$),
+      \p2 =(logos.south west) 
+      in
+        node[right, align=left, text width=\the\paperwidth / 4 * 3 - 2\mmu, fill=tumagenta, anchor=north west, inner sep=\mmu] %
+        (title) at (\x2, \the\paperheight/2+\y1-5\mmu) %
+        {\usebeamerfont{title}\color{white} \inserttitle};
+
+      \path % finishing the rectangle of the title
+        let \p1 = (title.north) in
+          (0, \y1) rectangle ($ (title.south west) + (0.5\mmu, 0) $) [fill=tumagenta];
+
+      %% authors
+      \node[right, anchor=north west,  align=left, text width= \the\paperwidth /4 * 3 - 2\mmu] %
+        (author) at (title.south west) %
+        {\usebeamerfont{author}\color{tugrey} \insertauthor};
+
+      %% "subtitle"
+      \path let \p1 = (title.south) in %
+          node[right, fill=tugrey!80, anchor=north west, align=left, %
+          text width= \the\paperwidth /5 * 2 - 2\mmu, %
+          inner ysep=0.5\mmu, inner xsep=2\mmu] %
+          at (\the\paperwidth /5 * 3, \y1+\mmu)
+        {\color{white}\Large 45th IEEE Symposium on\\\textbf{Security and Privacy}};
+}
+
+\defbeamertemplate*{title page}{secpriv}[1][]
+{
+  % yes, you are understanding this right, the title page is only backgroud !!!
+}
+
+\setbeamertemplate{background}{
+  \begin{tikzpicture}
+    \useasboundingbox (0, 0) rectangle (\the\paperwidth, \the\paperheight);
+    \ifnum\c@framenumber=1 % the background is different for the title page
+      \path (\mmu,\mmu) rectangle (\the\paperwidth - \mmu,\the\paperheight - \mmu)[fill=gray, fill opacity=0.1];
+      % ^^^^^^^^^^^ note that the rectangle is going *up*
+      \innerTitlePage % <- drawing the frametiele
+    \else
+      % on regular slides, the gray frame doges the footer
+      \path ($(\mmu,\mmu)+(0, \spfooter@logoheight)$) rectangle (\the\paperwidth - \mmu,\the\paperheight - \mmu)[fill=gray, fill opacity=0.1];
+    \fi
+  \end{tikzpicture}
+}
+
+% Items
+\setbeamertemplate{itemize items}{\textbullet}
+\setbeamertemplate{caption label separator}{: }
+\setbeamertemplate{caption}[numbered]
+
+% footnotes
+\setbeamertemplate{footnote}{%
+  \parindent 0em\noindent%
+  \raggedright
+  \usebeamercolor{footnote}\hbox to 0.8em{\hfil\insertfootnotemark}\insertfootnotetext\par%
+}
+
+% spacing
+\newlength{\metropolis@parskip}
+\setlength{\metropolis@parskip}{0.5em}
+\setlength{\parskip}{\metropolis@parskip}
+\linespread{1.15}
+
+% blocks
+% stollen from metropolis ^^'
+
+\newlength{\metropolis@blocksep}
+\newlength{\metropolis@blockadjust}
+\setlength{\metropolis@blocksep}{1ex}
+\setlength{\metropolis@blockadjust}{0.25ex}
+\providecommand{\metropolis@strut}{%
+  \vphantom{ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz()}%
+}
+\newcommand{\metropolis@block}[1]{
+  \par\vskip\medskipamount%
+  \setlength{\parskip}{0pt}
+  \ifbeamercolorempty[bg]{block title#1}{%
+    \begin{beamercolorbox}[rightskip=0pt plus 4em]{block title#1}}{%
+  \ifbeamercolorempty[bg]{block title}{%
+    \begin{beamercolorbox}[rightskip=0pt plus 4em]{block title#1}%
+  }%
+  {%
+    \begin{beamercolorbox}[
+      sep=\dimexpr\metropolis@blocksep-\metropolis@blockadjust\relax,
+      leftskip=\metropolis@blockadjust,
+      rightskip=\dimexpr\metropolis@blockadjust plus 4em\relax
+    ]{block title#1}%
+  }}%
+      \usebeamerfont*{block title#1}%
+      \metropolis@strut%
+      \insertblocktitle%
+      \metropolis@strut%
+  \end{beamercolorbox}%
+  \nointerlineskip%
+  \ifbeamercolorempty[bg]{block body#1}{%
+    \begin{beamercolorbox}[vmode]{block body#1}}{
+  \ifbeamercolorempty[bg]{block body}{%
+    \begin{beamercolorbox}[vmode]{block body#1}%
+  }{%
+    \begin{beamercolorbox}[sep=\metropolis@blocksep, vmode]{block body#1}%
+    \vspace{-\metropolis@parskip}
+  }}%
+      \usebeamerfont{block body#1}%
+      \setlength{\parskip}{\metropolis@parskip}%
+}
+\setbeamertemplate{block begin}{\metropolis@block{}}
+\setbeamertemplate{block alerted begin}{\metropolis@block{ alerted}}
+\setbeamertemplate{block example begin}{\metropolis@block{ example}}
+\setbeamertemplate{block end}{\end{beamercolorbox}\vspace*{0.2ex}}
+\setbeamertemplate{block alerted end}{\end{beamercolorbox}\vspace*{0.2ex}}
+\setbeamertemplate{block example end}{\end{beamercolorbox}\vspace*{0.2ex}}
+
+
+\AtBeginSubsection{
+  \ifbeamer@inframe
+    \subsectionpage
+  \else
+    \frame[plain,c,noframenumbering]{\sectionpage}
+  \fi
+}
+\AtBeginSection{
+  \ifbeamer@inframe
+    \sectionpage
+  \else
+    \frame[plain,c,noframenumbering]{\sectionpage}
+ \fi
+}
+
+\setbeamertemplate{section page}{
+  \begin{center}
+    \usebeamercolor[fg]{section title}
+    \usebeamerfont{section title}
+    \bfseries
+    \insertsectionhead\par
+    \ifx\insertsubsectionhead\@empty\else
+      \usebeamercolor[fg]{subsection title}
+      \usebeamerfont{subsection title}
+      \insertsubsectionhead
+    \fi
+  \end{center}
+}
+
+\mode<all>

@@ -1,0 +1,228 @@
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{emoji,amsthm,amsmath,amssymb,mathrsfs,stmaryrd,amsbsy,mathtools}
+
+\usepackage[english]{babel}
+\usepackage{xspace, csquotes, bm}
+
+\usepackage[
+    backend=biber,
+    bibencoding=utf8
+]{biblatex}
+% \addbibresource{980-bibliography.bib}
+\usepackage{url}
+
+\usepackage{caption, subcaption, multicol, hyperref} % For subfigures
+\usepackage{multirow, ragged2e, tabularx, pifont}%, booktabs, makecell, stackengine,collcell}
+\usepackage{mleftright}
+\mleftright
+
+\usepackage{./000-custom-library/custom_fiche}
+% \usepackage[inline]{enumitem}
+
+
+\newcommand{\gsep}{\,\big|\,}
+
+\newcommand{\loff}{0.6}
+\newcommand{\ptclarrow}[5]{\draw[#1] ($#2-(0,#5*\loff)$) -- node[midway,fill=white] {#4} ($#3-(0,#5*\loff)$);}
+\newcommand{\ptclevent}[3]{\draw ($#1-(0,#3*\loff)$) node {#2};}
+
+\definecolor{sugar}{HTML}{666699}
+\definecolor{constructors}{HTML}{b800e6}
+
+\DeclareMathOperator{\mpred}{{\color{tumagenta} pred}}
+\DeclareMathOperator{\minput}{{\color{tumagenta} input}}
+\DeclareMathOperator{\mmsg}{{\color{sugar} msg}}
+\DeclareMathOperator{\mcond}{{\color{sugar} cond}}
+\DeclareMathOperator{\mhappens}{{\color{tumagenta} happens}}
+
+\DeclareMathOperator{\minit}{\ensuremath{\mathsf{init}}}
+\DeclareMathOperator{\mundef}{\ensuremath{\mathsf{undef}}}
+\DeclareMathOperator{\matt}{\ensuremath{\mathsf{att}}}
+
+\DeclareMathOperator{\mhash}{\ensuremath{\mathcal{H}}}
+\DeclareMathOperator{\mverify}{\ensuremath{\mathsf{verify}}}
+
+\DeclareMathOperator{\mmok}{\ensuremath{\mathsf{ok}}}
+\DeclareMathOperator{\mmko}{\ensuremath{\mathsf{ko}}}
+\DeclareMathOperator{\mfail}{\ensuremath{\mathsf{fail}}}
+\DeclareMathOperator{\mEQ}{\ensuremath{\mathsf{EQ}}}
+
+\DeclareMathOperator{\mmin}{\ensuremath{\mathsf{in}}}
+
+\DeclareMathOperator{\mfv}{fv}
+
+\DeclareMathOperator{\mhead}{\ensuremath{\mathsf{head}}}
+
+\newcommand{\mepred}[2][\mathbb{T}]{\overline{\mathsf{pred}}_{ #1 }\mleft( #2 \mright)}
+
+\newcommand{\notF}{\ensuremath{\mathcal{F}^\varnothing}}
+
+% squirrel
+\newcommand{\mmacro}[2]{\ensuremath{\mathsf{#1}\mat #2}}
+
+\newcommand{\barWithSpacing}[1]{\mathbin{\bar{#1}}}
+\newcommand{\barWithoutSpacing}[1]{\bar{#1}}
+
+\newcommand{\bvee}{\barWithSpacing{\vee}}
+\newcommand{\bwedge}{\barWithSpacing{\wedge}}
+\newcommand{\bimplies}{\barWithSpacing{\Rightarrow}}
+\newcommand{\biff}{\barWithSpacing{\Leftrightarrow}}
+\newcommand{\beq}{\barWithSpacing{=}}
+\newcommand{\bneq}{\barWithSpacing{\neq}}
+\newcommand{\bneg}{\barWithoutSpacing{\neg}}
+\newcommand{\bexists}{\barWithoutSpacing{\exists}}
+\newcommand{\bforall}{\barWithoutSpacing{\forall}}
+\newcommand{\bbot}{\mathtt{false}}
+\newcommand{\btop}{\mathtt{true}}
+
+% \newcommand{\mappend}{\mathbin{\stackon{$=$}{$\cup$}}}nd{\meval}[1]{\mleft| #1 \mright|}
+\newcommand{\meval}[1]{\mleft| #1 \mright|}
+\newcommand{\mevalI}[2][\mathbb{I}]{\mleft[ #2 \mright]^{#1}}
+\newcommand{\mevalE}[2][\mathbb{E}]{\mleft[ #2 \mright]_{#1}}
+\newcommand{\mevaltimeE}[2][\mathbb{E}]{\left( #2 \right)^{#1}}
+\newcommand{\mevalsquigE}[2][\mathbb{E}]{\left\{ #2 \right\}^{#1}}
+\newcommand{\mevalidxT}[2][\mathbb{T}]{\underline{ #2 }_{#1}}
+\newcommand{\mevaltimeT}[2][\mathbb{T}]{\mevaltimeE[#1]{#2}}
+\newcommand{\mevalsquigT}[2][\mathbb{T}]{\mevalsquigE[#1]{#2}}
+\newcommand{\mevalT}[2][\mathbb{T}]{\left[ #2 \right]^{#1}}
+\newcommand{\mevalTsq}[2][\mathbb{T}]{\left[ #2 \right]^{#1}_{\mathrm{sq}}}
+% evaluation
+\newcommand{\mevalbc}[1]{\ensuremath{\mleft\llbracket #1 \mright\rrbracket_\text{bc}^{\mathbb{M}}}}
+\newcommand{\mevalsq}[2][\mathbb{T}]{\ensuremath{\mevalbc{\mevalTsq[#1]{#2}}}}
+\newcommand{\bcint}[3]{\ensuremath{\mevalbc{#1}\mleft( 1^{#2}, #3 \mright)}} % bc logic -> proba
+% T SM CM h r
+\newcommand{\minterpbase}[5]{\ensuremath{\mathfrak{M}_{{#1}\,{#2}\,{#3}}^{{#4}\,{#5}}}}
+\newcommand{\minterp}[1]{\minterpbase{\mathbb{T}}{\mathcal{M}}{\mathbb{M}}{\eta}{\rho}\left( #1 \right)}
+\newcommand{\mminterp}[2][\mathbb{T}]{\minterpbase{#1}{\mathcal{M}}{\mathbb{M}}{\_}{\_}\left( #2 \right)}
+
+\newcommand{\consistent}[1][\mathbb{P}]{\Vdash_{#1}}
+\newcommand{\proves}{\vdash}
+\newcommand{\validp}[1][\mathbb{P}]{\vDash_{#1}}
+\newcommand{\valid}{\vDash}
+\newcommand{\validbc}{\vDash_\mathrm{bc}}
+
+\newcommand{\ib}{\bm{\mathrm{i}}}
+\newcommand{\jb}{\bm{\mathrm{j}}}
+\newcommand{\ub}{\bm{u}}
+\newcommand{\vb}{\bm{v}}
+\newcommand{\tb}{\bm{\tau}}
+\newcommand{\xb}{\bm{x}}
+
+\newcommand{\noncefont}[1]{\mathsf{#1}}
+\newcommand{\n}{\ensuremath{\noncefont{n}}\xspace}
+\newcommand{\m}{\ensuremath{\noncefont{m}}\xspace}
+\newcommand{\mk}{\ensuremath{\noncefont{k}}\xspace}
+\newcommand{\nb}{\ensuremath{\bm{\noncefont{n}}}\xspace}
+\newcommand{\mb}{\ensuremath{\bm{\noncefont{m}}}\xspace}
+\newcommand{\kb}{\ensuremath{\bm{\noncefont{k}}}\xspace}
+
+\newcommand{\cellfont}[1]{\mathfrak{#1}}
+\newcommand{\cc}{\cellfont{c}\xspace}
+\newcommand{\ca}{\cellfont{a}\xspace}
+\newcommand{\cb}{\cellfont{b}\xspace}
+
+\newcommand{\stepfont}[1]{\mathsf{#1}}
+\newcommand{\stpa}{\stepfont{a}\xspace}
+\newcommand{\stpb}{\stepfont{b}\xspace}
+
+\newcommand{\veci}{\vec{\imath}}
+\newcommand{\vecj}{\vec{\jmath}}
+\newcommand{\vecu}{\vec{u}}
+\newcommand{\vecv}{\vec{v}}
+\newcommand{\vecib}{\vec{\bm{\mathrm{\i}}}}
+\newcommand{\vecjb}{\vec{\bm{\mathrm{\j}}}}
+\newcommand{\vect}{\vec\tau}
+\newcommand{\vectb}{\vec{\bm{\tau}}}
+\newcommand{\vecub}{\vec{\ub}}
+\newcommand{\vecvb}{\vec{\vb}}
+
+\newcommand{\vecscalled}[1]{\vec{\scalebox{1}[0.9]{$#1$}}}
+\newcommand{\vecI}{\vecscalled{I}}
+\newcommand{\vecT}{\vecscalled{T}}
+\newcommand{\vecU}{\vecscalled{U}}
+\newcommand{\vecV}{\vecscalled{V}}
+
+\newcommand{\alphab}{\bm{\alpha}}
+\newcommand{\vecalpha}{\vec\alpha}
+\newcommand{\vecalphab}{\vec{\alphab}}
+
+\newcommand{\betab}{\bm{\beta}}
+\newcommand{\vecbeta}{\vec{\beta}}
+\newcommand{\vecbetab}{\vec{\betab}}
+
+\newcommand{\msubstit}[3]{{{#1}{\mleft\{ #2 \mapsto #3 \mright\}}}}
+
+\DeclareMathOperator{\mnegl}{negl}
+% \DeclareMathOperator{\mprob}[1][\rho]{\mathbb{P}rob_{#1}}
+\newcommand{\mprob}[1][\rho]{\ensuremath{{\mathbb{P}\mathrm{rob}}_{#1}}\xspace}
+
+\newcommand{\mappend}{\mathbin{\stackon{$=$}{$\cup$}}}
+
+% \newcommand{\mattid}{\ensuremath{\raisebox{-0.4ex}{\text{\emoji{smiling-imp}}}}}
+\newcommand{\mattf}{\ensuremath{\raisebox{-0.4ex}{\text{\emoji{smiling-imp}}}}}
+\newcommand{\mdice}{\ensuremath{\raisebox{-0.4ex}{\text{\emoji{game-die}}}}}
+\newcommand{\mkey}{\ensuremath{\raisebox{-0.4ex}{\text{\emoji{key}}}}}
+ 
+
+% fake small caps
+% \newcommand\fauxsc[1]{\fauxschelper#1 \relax\relax}
+% \def\fauxschelper#1 #2\relax{%
+%   \fauxschelphelp#1\relax\relax%
+%   \if\relax#2\relax\else\ \fauxschelper#2\relax\fi%
+% }
+% \def\Hscale{.83}\def\Vscale{.72}\def\Cscale{1.00}
+% \def\fauxschelphelp#1#2\relax{%
+%   \ifnum`#1=\lccode`#1\relax\scalebox{\Hscale}[\Vscale]{\char\uccode`#1}\else%
+%     \scalebox{\Cscale}[1]{#1}\fi%
+%   \ifx\relax#2\relax\else\fauxschelphelp#2\relax\fi}
+
+% \renewcommand{\textsc}[1]{\fauxsc{#1}}
+
+
+\newcommand{\msk}[1][]{\mathrm{sk}_{#1}}
+\newcommand{\mSk}{\mathcal{S}\mathrm{k}}
+
+
+
+\newcommand{\mski}{\msk[I]}
+\newcommand{\mskt}{\msk[T]}
+\newcommand{\vecmsk}[1][]{\vec{\msk[#1]}}
+\newcommand{\vecmski}{\vec{\mskI}}
+\newcommand{\vecmskt}{\vec{\mskT}}
+
+\newcommand{\mindices}{\ensuremath{\mathcal{I}}\xspace}
+\newcommand{\mnonces}{\ensuremath{\mathcal{N}}\xspace}
+\newcommand{\mfunctions}{\ensuremath{\mathcal{F}}\xspace}
+\newcommand{\msteps}{\ensuremath{\mathcal{S}}\xspace}
+\newcommand{\mcells}{\ensuremath{\mathcal{C}}\xspace}
+\newcommand{\mskolems}{\ensuremath{\mSk}\xspace}
+
+\newcommand{\mnoncesbc}{\ensuremath{\mathcal{N}_\mathrm{bc}}\xspace}
+\newcommand{\mfunctionsbc}{\ensuremath{\mathcal{F}_\mathrm{bc}}\xspace}
+\newcommand{\mattsbc}{\ensuremath{\mathcal{G}_\mathrm{bc}}\xspace}
+
+\newcommand{\mfindst}[4]{\ensuremath{\textsc{Find } #1 \textsc{ \allowbreak Such \allowbreak that } #2 \textsc{ \allowbreak Then } #3 \textsc{ \allowbreak Else } #4}}
+\newcommand{\mifthenelse}[3]{\ensuremath{\textsc{If } #1 \allowbreak\textsc{ Then } #2 \allowbreak\textsc{ Else } #3}}
+\newcommand{\mifthenelsenb}[3]{\ensuremath{\textsc{If } #1 \textsc{ Then } #2 \textsc{ else } #3}}
+
+
+\newcolumntype{M}[1]{>{\centering\arraybackslash}m{#1}}
+
+\newcommand{\mzed}{\textsc{z3}\xspace}
+\newcommand{\mcvc}{\textsc{cvc5}\xspace}
+
+\newcommand{\cmark}{\ding{51}}%
+\newcommand{\xmark}{\ding{55}}%
+
+
+
+
+
+\renewcommand{\emph}[1]{{\color{tumagenta}\RajdhaniSb #1}}
+
+\newcommand{\msquirrel}{\textsc{Squirrel}\xspace}
+\newcommand{\mvampire}{\textsc{Vampire}\xspace}
+\newcommand{\tool}{\textsc{CryptoVampire}\xspace} % the tool <---------------------
+\newcommand{\AAA}{\ensuremath{\mathcal{A}}}

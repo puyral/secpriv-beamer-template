@@ -1,0 +1,26 @@
+\mode<presentation>
+
+% Frame title
+\defbeamertemplate*{frametitle}{secpriv}[1][]
+{
+  \vskip1cm%
+  \insertframetitle
+  \ifx\insertframesubtitle\@empty\else%
+   {\Large\RajdhaniLight \\\insertframesubtitle}
+  \fi
+}
+
+\setbeamertemplate{frametitle continuation}{%
+  \usebeamerfont{frametitle}
+  \romannumeral \insertcontinuationcount
+}
+\defbeamertemplate*{footline}{secpriv}[1][]{
+  \footnotesize%
+    \begin{beamercolorbox}[wd=\textwidth, sep=1ex]{footline}
+      \includegraphics[height=\spfooter@logoheight]{011-Logos/logos-gray.pdf}%
+      % ~\includegraphics[height=\spfooter@logoheight]{011-Logos/SPyCoDe-gray.pdf}%
+      \hfill
+      {{\bfseries\secname}~//~\RajdhaniLight\inserttitle~~~~ \thepage}
+    \end{beamercolorbox}
+}
+\mode<all>
