@@ -12,7 +12,6 @@
 % the directory that holds the theme, because beamer is dumb, we need to redefine the `\usetheme'
 % command (and it's derivitives).
 % https://tex.stackexchange.com/a/435558/236175
-
 \makeatletter
 \def\beamer@calltheme#1#2#3{%
   \def\beamer@themelist{#2}
@@ -20,16 +19,14 @@
   {\usepackage[{#1}]{\themedirectory#3\beamer@themename}}}
 \makeatother
 \usetheme{secpriv}
-% ^^^^^^^^^^^^^^^^ <- actually calls the them
-% Note that is resets the `\usethem` command
+% ^^^^^^^^^^^^^^^^ <- actually calls the theme
+% Note that `secpriv` resets the `\usethem` command afteward
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \title{Title }
 \date{\today}
 \author{me}
-
-
 
 \begin{document}
 
@@ -41,7 +38,5 @@
   \frametitle{Cryptography is not enough}
   tset
 \end{frame}
-
-
 
 \end{document}
