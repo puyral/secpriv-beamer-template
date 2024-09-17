@@ -43,12 +43,20 @@
 
       % Now, calculate the height of the temporary node and adjust final position
       \path
-      let \p1 = ($(tmp_title.north) - (tmp_title.south)$),
-      \p2 =(logos.south west) 
+        let \p1 = ($(tmp_title.north) - (tmp_title.south)$),
+        \p2 =(logos.south west) 
       in
-        node[right, align=left, text width=\the\paperwidth / 4 * 3 - 2\mmu, fill=tumagenta, anchor=north west, inner sep=\mmu] %
-        (title) at (\x2, \the\paperheight/2+\y1-5\mmu) %
-        {\usebeamerfont{title}\color{white} \inserttitle};
+        node[
+          right,
+          align=left,
+          text width=\the\paperwidth / 4 * 3 - 2\mmu,
+          fill=tumagenta,
+          draw=tumagenta,
+          anchor=north west,
+          inner sep=\mmu
+        ] %
+          (title) at (\x2, \the\paperheight/2+\y1-5\mmu) %
+          {\usebeamerfont{title}\color{white} \inserttitle};
 
       \path % finishing the rectangle of the title
         let \p1 = (title.north) in
