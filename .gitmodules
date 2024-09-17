@@ -1,0 +1,3 @@
+[submodule "000-custom-library"]
+	path = 000-custom-library
+	url = git@github.com:puyral/custom_latex_packages.git

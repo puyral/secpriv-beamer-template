@@ -1,0 +1,61 @@
+\mode<presentation>
+
+\definecolor{tublue}{HTML}{006699} % 4a9cf5
+
+\definecolor{tugrey}{HTML}{595959} % 4a9cf5
+\definecolor{tubggrey}{HTML}{eeeff0} % 4a9cf5
+
+\definecolor{tubluetwo}{HTML}{5485AB} % 4a9cf5
+\definecolor{tumagenta}{HTML}{BA4682} % 4a9cf5
+\definecolor{tuyellow}{HTML}{E18922} % 4a9cf5
+\definecolor{tugreen}{HTML}{007E71} % 4a9cf5
+
+
+
+% Settings
+\setbeamercolor*{title page header}{fg=white}
+\setbeamercolor*{author}{fg=white}
+\setbeamercolor*{date}{fg=white}
+\setbeamercolor*{item}{fg=tublue}
+\setbeamercolor*{frametitle}{fg=tublue}
+\setbeamercolor{alerted text}{%
+  fg=tumagenta
+}
+\setbeamercolor{example text}{%
+  fg=tugrey
+}
+
+\setbeamercolor*{normal text}{fg=tugrey}
+\setbeamercolor{palette primary}{%
+  use=normal text,
+  fg=normal text.bg,
+  bg=normal text.fg
+}
+
+
+\setbeamercolor{block title}{%
+  use=normal text,
+  fg=tublue,
+  bg=tubggrey!80!fg
+}
+\setbeamercolor{block body}{
+  use={block title, normal text},
+  bg=tubggrey
+}
+
+\setbeamercolor{block title alerted}{%
+  use={block title, alerted text},
+  bg=block title.bg,
+  fg=alerted text.fg
+}
+\setbeamercolor{block title example}{%
+  use={block title, example text},
+  bg=block title.bg,
+  fg=example text.fg
+}
+\setbeamercolor{block body alerted}{use=block body, parent=block body}
+\setbeamercolor{block body example}{use=block body, parent=block body}
+
+\setbeamercolor{titlelike}{use=normal text, parent=normal text}
+\mode
+<all>

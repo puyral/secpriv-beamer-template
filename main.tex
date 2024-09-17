@@ -1,0 +1,47 @@
+\documentclass[aspectratio=169]{beamer}
+\input{000-preamble.tex}
+%      ^^^^^^^^^^^^^^^^
+% a preamble file.
+% It might import stuff required for the theme, but I didn't try to figure out which ones
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% The theme
+% see the files themselve to personalize it
+\newcommand{\themedirectory}{./001-custom-theme/}
+%                            ^^^^^^^^^^^^^^^^^^^
+% the directory that holds the theme, because beamer is dumb, we need to redefine the `\usetheme'
+% command (and it's derivitives).
+% https://tex.stackexchange.com/a/435558/236175
+
+\makeatletter
+\def\beamer@calltheme#1#2#3{%
+  \def\beamer@themelist{#2}
+  \@for\beamer@themename:=\beamer@themelist\do
+  {\usepackage[{#1}]{\themedirectory#3\beamer@themename}}}
+\makeatother
+\usetheme{secpriv}
+% ^^^^^^^^^^^^^^^^ <- actually calls the them
+% Note that is resets the `\usethem` command
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\title{Title }
+\date{\today}
+\author{me}
+
+
+
+\begin{document}
+
+\begin{frame}[plain]
+  \titlepage
+\end{frame}
+
+\begin{frame}
+  \frametitle{Cryptography is not enough}
+  tset
+\end{frame}
+
+
+
+\end{document}
