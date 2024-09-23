@@ -44,7 +44,7 @@
       % Now, calculate the height of the temporary node and adjust final position
       \path
         let \p1 = ($(tmp_title.north) - (tmp_title.south)$),
-        \p2 =(logos.south west) 
+        \p2 =(logos.south west)
       in
         node[
           right,
@@ -73,7 +73,7 @@
           text width= \the\paperwidth /5 * 2 - 2\mmu, %
           inner ysep=0.5\mmu, inner xsep=2\mmu] %
           at (\the\paperwidth /5 * 3, \y1+\mmu)
-        {\color{white}\Large 45th IEEE Symposium on\\\textbf{Security and Privacy}};
+        {\color{white}\usebeamerfont{subtitle} \insertsubtitle};
 }
 
 \defbeamertemplate*{title page}{secpriv}[1][]
