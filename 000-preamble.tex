@@ -18,7 +18,7 @@
 \usepackage{mleftright}
 \mleftright
 
-\usepackage[allBox,grayBackground]{./000-custom-library/custom_fiche}
+\usepackage[allBox,grayBackground,ignoreEnumitem]{./000-custom-library/custom_fiche}
 % \usepackage[inline]{enumitem}
 
 
@@ -31,13 +31,18 @@
 \definecolor{sugar}{HTML}{666699}
 \definecolor{constructors}{HTML}{b800e6}
 
-\DeclareMathOperator{\mpred}{{\color{tumagenta} pred}}
+\DeclareMathOperator{\mpred}{{\color{tublue} pred}}
 \DeclareMathOperator{\minput}{{\color{tumagenta} input}}
-\DeclareMathOperator{\mmsg}{{\color{sugar} msg}}
-\DeclareMathOperator{\mcond}{{\color{sugar} cond}}
+\DeclareMathOperator{\mmsg}{{\color{tumagenta} msg}}
+\DeclareMathOperator{\mcond}{{\color{tumagenta} cond}}
+\DeclareMathOperator{\mdec}{{\color{sugar} dec}}
 \DeclareMathOperator{\mhappens}{{\color{tumagenta} happens}}
 
-\DeclareMathOperator{\minit}{\ensuremath{\mathsf{init}}}
+\DeclareMathOperator{\moutput}{{\color{tumagenta} output}}
+\DeclareMathOperator{\mexec}{{\color{tumagenta} exec}}
+\DeclareMathOperator{\mframe}{{\color{tumagenta} frame}}
+
+\DeclareMathOperator{\minit}{\ensuremath{{\color{sugar} \mathsf{init}}}}
 \DeclareMathOperator{\mundef}{\ensuremath{\mathsf{undef}}}
 \DeclareMathOperator{\matt}{\ensuremath{\mathsf{att}}}
 
@@ -49,7 +54,7 @@
 \DeclareMathOperator{\mfail}{\ensuremath{\mathsf{fail}}}
 \DeclareMathOperator{\mEQ}{\ensuremath{\mathsf{EQ}}}
 
-\DeclareMathOperator{\mmin}{\ensuremath{\mathsf{in}}}
+\DeclareMathOperator{\mmin}{\ensuremath{{\color{tumagenta} \mathsf{in}}}}
 
 \DeclareMathOperator{\mfv}{fv}
 
@@ -58,6 +63,8 @@
 \newcommand{\mepred}[2][\mathbb{T}]{\overline{\mathsf{pred}}_{ #1 }\mleft( #2 \mright)}
 
 \newcommand{\notF}{\ensuremath{\mathcal{F}^\varnothing}}
+
+\newcommand{\mat}{ @}
 
 % squirrel
 \newcommand{\mmacro}[2]{\ensuremath{\mathsf{#1}\mat #2}}
@@ -86,10 +93,10 @@
 \newcommand{\mevalidxT}[2][\mathbb{T}]{\underline{ #2 }_{#1}}
 \newcommand{\mevaltimeT}[2][\mathbb{T}]{\mevaltimeE[#1]{#2}}
 \newcommand{\mevalsquigT}[2][\mathbb{T}]{\mevalsquigE[#1]{#2}}
-\newcommand{\mevalT}[2][\mathbb{T}]{\left[ #2 \right]^{#1}}
+\newcommand{\mevalT}[2][\mathbb{T}]{\left( #2 \right)^{#1}_{\mathcal{P}}}
 \newcommand{\mevalTsq}[2][\mathbb{T}]{\left[ #2 \right]^{#1}_{\mathrm{sq}}}
 % evaluation
-\newcommand{\mevalbc}[1]{\ensuremath{\mleft\llbracket #1 \mright\rrbracket_\text{bc}^{\mathbb{M}}}}
+\newcommand{\mevalbc}[1]{\ensuremath{\mleft\llbracket #1 \mright\rrbracket^{\mathbb{M}}}}
 \newcommand{\mevalsq}[2][\mathbb{T}]{\ensuremath{\mevalbc{\mevalTsq[#1]{#2}}}}
 \newcommand{\bcint}[3]{\ensuremath{\mevalbc{#1}\mleft( 1^{#2}, #3 \mright)}} % bc logic -> proba
 % T SM CM h r
@@ -110,10 +117,12 @@
 \newcommand{\tb}{\bm{\tau}}
 \newcommand{\xb}{\bm{x}}
 
-\newcommand{\noncefont}[1]{\mathsf{#1}}
+\newcommand{\noncefont}[1]{\overline{\mathsf{#1}}}
 \newcommand{\n}{\ensuremath{\noncefont{n}}\xspace}
+\newcommand{\mr}{\ensuremath{\noncefont{r}}\xspace}
 \newcommand{\m}{\ensuremath{\noncefont{m}}\xspace}
 \newcommand{\mk}{\ensuremath{\noncefont{k}}\xspace}
+\newcommand{\mK}{\ensuremath{\noncefont{K}}\xspace}
 \newcommand{\nb}{\ensuremath{\bm{\noncefont{n}}}\xspace}
 \newcommand{\mb}{\ensuremath{\bm{\noncefont{m}}}\xspace}
 \newcommand{\kb}{\ensuremath{\bm{\noncefont{k}}}\xspace}
@@ -131,8 +140,8 @@
 \newcommand{\vecj}{\vec{\jmath}}
 \newcommand{\vecu}{\vec{u}}
 \newcommand{\vecv}{\vec{v}}
-\newcommand{\vecib}{\vec{\bm{\mathrm{\i}}}}
-\newcommand{\vecjb}{\vec{\bm{\mathrm{\j}}}}
+\newcommand{\vecib}{\vec{\bm{\mathrm{\imath}}}}
+\newcommand{\vecjb}{\vec{\bm{\mathrm{\jmath}}}}
 \newcommand{\vect}{\vec\tau}
 \newcommand{\vectb}{\vec{\bm{\tau}}}
 \newcommand{\vecub}{\vec{\ub}}
