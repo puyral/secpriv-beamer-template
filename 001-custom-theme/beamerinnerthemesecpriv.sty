@@ -20,7 +20,7 @@
           \includegraphics[height=6\mmu]{011-Logos/logo_RGB.pdf}%
           \hspace{\mmu}
           \includegraphics[height=6\mmu]{011-Logos/cysec_blue_gray.pdf}
-          \hspace{\mmu}
+          \hspace{\mmu}\\\vspace{\mmu}
           \includegraphics[height=4\mmu]{011-Logos/SPyCoDe.pdf}
           \hspace{\mmu}
           \includegraphics[height=4\mmu]{011-Logos/FWF_Logo_Zusatz_Dunkelblau_RGB_EN.pdf}
@@ -44,7 +44,7 @@
       % Now, calculate the height of the temporary node and adjust final position
       \path
         let \p1 = ($(tmp_title.north) - (tmp_title.south)$),
-        \p2 =(logos.south west) 
+        \p2 =(logos.south west)
       in
         node[
           right,
@@ -73,7 +73,7 @@
           text width= \the\paperwidth /5 * 2 - 2\mmu, %
           inner ysep=0.5\mmu, inner xsep=2\mmu] %
           at (\the\paperwidth /5 * 3, \y1+\mmu)
-        {\color{white}\Large 45th IEEE Symposium on\\\textbf{Security and Privacy}};
+        {\color{white}\usebeamerfont{subtitle} \insertsubtitle};
 }
 
 \defbeamertemplate*{title page}{secpriv}[1][]
@@ -90,7 +90,7 @@
       \innerTitlePage % <- drawing the frametiele
     \else
       % on regular slides, the gray frame doges the footer
-      \path ($(\mmu,\mmu)+(0, \spfooter@logoheight)$) rectangle (\the\paperwidth - \mmu,\the\paperheight - \mmu)[fill=gray, fill opacity=0.1];
+      % \path ($(\mmu,\mmu)+(0, \spfooter@logoheight)$) rectangle (\the\paperwidth - \mmu,\the\paperheight - \mmu)[fill=gray, fill opacity=0.1];
     \fi
   \end{tikzpicture}
 }
