@@ -1,6 +1,8 @@
 *.DS_Store
 **/._*
 
+_minted-main
+
 .vscode*
 tmp.pdf
 

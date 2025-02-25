@@ -20,7 +20,7 @@
           \includegraphics[height=6\mmu]{011-Logos/logo_RGB.pdf}%
           \hspace{\mmu}
           \includegraphics[height=6\mmu]{011-Logos/cysec_blue_gray.pdf}
-          \hspace{\mmu}
+          \hspace{\mmu}\\\vspace{\mmu}
           \includegraphics[height=4\mmu]{011-Logos/SPyCoDe.pdf}
           \hspace{\mmu}
           \includegraphics[height=4\mmu]{011-Logos/FWF_Logo_Zusatz_Dunkelblau_RGB_EN.pdf}
@@ -90,7 +90,7 @@
       \innerTitlePage % <- drawing the frametiele
     \else
       % on regular slides, the gray frame doges the footer
-      \path ($(\mmu,\mmu)+(0, \spfooter@logoheight)$) rectangle (\the\paperwidth - \mmu,\the\paperheight - \mmu)[fill=gray, fill opacity=0.1];
+      % \path ($(\mmu,\mmu)+(0, \spfooter@logoheight)$) rectangle (\the\paperwidth - \mmu,\the\paperheight - \mmu)[fill=gray, fill opacity=0.1];
     \fi
   \end{tikzpicture}
 }
